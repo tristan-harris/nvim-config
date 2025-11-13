@@ -1,0 +1,7 @@
+{
+    "#pragma once": {
+        "prefix": "#po",
+        "body": "#pragma once",
+        "description": "Modern header guard"
+    }
+}

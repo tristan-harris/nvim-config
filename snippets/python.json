@@ -1,0 +1,12 @@
+{
+    "if __name__ == __main__": {
+        "prefix": "ifmain",
+        "body": ["if __name__ == \"__main__\":", "\t${1:main()}"],
+        "description": "Execute code if the file is executed directly"
+    },
+    "if/else": {
+        "prefix": "ifelse",
+        "body": ["if ${1:condition}:", "\t${2:pass}", "else:", "\t${3:pass}"],
+        "description": "if statement with else"
+    }
+}
