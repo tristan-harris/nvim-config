@@ -10,7 +10,7 @@ if vim.bo.buftype ~= "nofile" then
     vim.opt_local.spell = true
 end
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 -- Highlight #todo/#TODO in notes
 -- colors pulled from https://github.com/folke/tokyonight.nvim/blob/main/lua/tokyonight/colors/storm.lua
@@ -18,7 +18,7 @@ vim.api.nvim_set_hl(0, "TodoHighlightGroup", { fg = "#1a1b26", bg = "#1abc9c", b
 vim.fn.matchadd("TodoHighlightGroup", "#todo")
 vim.fn.matchadd("TodoHighlightGroup", "#TODO")
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 -- url needs to be surrounded in double quotes
 local function filePaste(opts)
@@ -42,7 +42,7 @@ end
 
 vim.api.nvim_create_user_command("PasteFile", filePaste, { desc = "Paste file (from URL) into markdown document" })
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 local notes_directory = "~/Documents/Notes/"
 
@@ -88,7 +88,7 @@ vim.api.nvim_create_user_command("Notes", notes, {
     desc = "Jump to different notes directory",
 })
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 local function insertTitle(with_directory)
     local filename = vim.fn.fnamemodify(vim.fn.expand("%"), ":t")
@@ -106,7 +106,7 @@ vim.keymap.set("n", "<leader>mT", function()
     insertTitle(true)
 end, { desc = "Insert extended [T]itle" })
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 vim.keymap.set("n", "<leader>mu", function()
     local text = "<" .. vim.fn.getreg("+") .. ">"
@@ -122,7 +122,7 @@ vim.keymap.set("n", "<leader>mq", function()
     end
 end, { desc = "Toggle [q]uote" })
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 local function capitaliseFirstLowercase()
     local line = vim.api.nvim_get_current_line()
@@ -141,7 +141,7 @@ end
 
 vim.keymap.set("n", "<leader>m>", capitaliseFirstLowercase, { desc = "Capitalise first lower character" })
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 local function toggleMarkdownBold()
     local word = vim.fn.expand("<cword>")
@@ -163,7 +163,7 @@ end
 
 vim.keymap.set("n", "<leader>mb", toggleMarkdownBold, { desc = "Toggle [b]old" })
 
--- =============================================================================
+----------------------------------------------------------------------------------------------------
 
 local function changeCurrentWorkingDirectory()
     vim.cmd([[cd %:p:h]])
@@ -171,29 +171,3 @@ local function changeCurrentWorkingDirectory()
 end
 
 vim.keymap.set("n", "<leader>md", changeCurrentWorkingDirectory, { desc = "Change current [d]irectory" })
-
--- =============================================================================
-
-local function toggleCheckbox()
-    local line = vim.api.nvim_get_current_line()
-    local new_line
-
-    if line:match("^%s*%- %[ %]") then
-        new_line = line:gsub("%- %[ %]", "- [x]", 1)
-    elseif line:match("^%s*%- %[x%]") then
-        new_line = line:gsub("%- %[x%]", "- [ ]", 1)
-    else
-        new_line = "- [ ] " .. line
-    end
-
-    vim.api.nvim_set_current_line(new_line)
-end
-
--- Set up autocmd for Markdown filetype
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "markdown",
-    callback = function()
-        -- Buffer-local keymap only for markdown files
-        vim.keymap.set("n", "<C-Space>", toggleCheckbox, { buffer = true, desc = "Toggle checkbox" })
-    end,
-})

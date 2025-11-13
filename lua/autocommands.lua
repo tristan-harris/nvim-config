@@ -1,5 +1,7 @@
 local group = vim.api.nvim_create_augroup("MyAutoCommandGroup", { clear = true })
 
+-- MAIN ------------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = group,
     pattern = "*",
@@ -16,14 +18,14 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
     desc = "Return cursor to where it was last time closing the file",
 })
 
--- do not add a comment leader after inserting line below existing comment
--- autocommand needed this option is overriden by many ftplugins
--- ENTER still works on a commented line (remove with -r)
+-- prevents a comment leader being added after inserting line below existing comment
+-- autocommand needed for this option since it is overriden by many ftplugins
+-- ENTER still works on a commented line (can remove with -r)
 vim.api.nvim_create_autocmd("FileType", {
     group = group,
     pattern = "*",
     command = "set formatoptions-=o",
-    desc = "Override ftplugin configuration in regards to 'formatoptions'",
+    desc = "Override ftplugin configuration in relation to 'formatoptions'",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
@@ -78,6 +80,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- see also 'fold' section in options
 -- https://redlib.catsarch.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
 vim.api.nvim_create_autocmd("LspAttach", {
+    group = group,
     callback = function(args)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client ~= nil and client:supports_method("textDocument/foldingRange") then
@@ -87,14 +90,45 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
+-- GDSCRIPT --------------------------------------------------------------------
+
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = "gdscript", -- Replace 'python' with your desired filetype
+    group = group,
+    pattern = "gdscript",
     callback = function()
-        vim.b.did_ftplugin = 1 -- Prevent the built-in ftplugin from loading
+        vim.b.did_ftplugin = 1
     end,
+    desc = "Prevent built-in gdscript ftplugin from loading",
 })
 
--- ==========================================================================================================
+-- MARKDOWN --------------------------------------------------------------------
+
+local function toggleCheckbox()
+    local line = vim.api.nvim_get_current_line()
+    local new_line
+
+    if line:match("^%s*%- %[ %]") then
+        new_line = line:gsub("%- %[ %]", "- [x]", 1)
+    elseif line:match("^%s*%- %[x%]") then
+        new_line = line:gsub("%- %[x%]", "- [ ]", 1)
+    else
+        new_line = "- [ ] " .. line
+    end
+
+    vim.api.nvim_set_current_line(new_line)
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+    group = group,
+    pattern = "markdown",
+    callback = function()
+        -- Buffer-local keymap only for markdown files
+        vim.keymap.set("n", "<C-Space>", toggleCheckbox, { buffer = true, desc = "Toggle checkbox" })
+    end,
+    desc = "Toggle checkbox"
+})
+
+--------------------------------------------------------------------------------
 
 -- turn off relative numbers in insert mode
 -- vim.api.nvim_create_autocmd({ "VimEnter", "InsertLeave" }, {
