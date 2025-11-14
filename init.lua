@@ -89,6 +89,10 @@ vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
 vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 
+-- set out of focus windows to terminal color scheme 'black' color
+vim.api.nvim_set_hl(0, "NormalNC", { bg = "#14151d" })
+vim.api.nvim_set_hl(0, "CursorLineNC", { bg = "#14151d" })
+
 require("autocommands")
 require("diagnostics")
 require("filetype")
