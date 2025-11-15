@@ -15,23 +15,19 @@ return {
                 },
             },
         })
-        vim.lsp.config("ts_ls", {
-            settings = {
-                typescript = {
-                    inlayHints = {
-                        -- You can set this to 'all' or 'literals' to enable more hints
-                        includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-                        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                        includeInlayFunctionParameterTypeHints = true,
-                        includeInlayVariableTypeHints = true,
-                        includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-                        includeInlayPropertyDeclarationTypeHints = true,
-                        includeInlayFunctionLikeReturnTypeHints = true,
-                        includeInlayEnumMemberValueHints = true,
+
+        vim.lsp.config("clangd", {
+            capabilities = {
+                textDocument = {
+                    completion = {
+                        completionItem = {
+                            snippetSupport = false, -- disable snippets from LS
+                        },
                     },
                 },
             },
         })
+
         vim.lsp.config("lua_ls", {
             settings = {
                 Lua = {
