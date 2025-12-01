@@ -77,6 +77,8 @@ return {
         window = {
             -- mappings are overriden so they are like lf
             mappings = { -- mappings for all sources
+                ["<C-k>"] = "prev_git_modified",
+                ["<C-j>"] = "next_git_modified",
                 ["<space>"] = "none",
                 ["h"] = "close_node",
                 ["H"] = "none",
