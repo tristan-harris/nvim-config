@@ -11,7 +11,7 @@ return {
         vim.cmd([[Neotree close]])
     end,
     init = function()
-        -- https://www.reddit.com/r/neovim/comments/195mfz2/comment/kuvtqna
+        -- https://redlib.catsarch.com/r/neovim/comments/195mfz2/comment/kuvtqna
         vim.api.nvim_create_autocmd("BufEnter", {
             -- make a group to be able to delete it later
             group = vim.api.nvim_create_augroup("NeoTreeInit", { clear = true }),
