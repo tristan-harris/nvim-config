@@ -40,7 +40,6 @@ require("lazy").setup({
     -- NAVIGATION
     require("plugins.neotree"),
     require("plugins.telescope"),
-    require("plugins.snipe"),
 
     -- UI
     require("plugins.dashboard"),
@@ -54,7 +53,6 @@ require("lazy").setup({
 
     -- GIT
     require("plugins.gitsigns"),
-    require("plugins.lazygit"),
 
     -- UTILITY
     require("plugins.autopairs"),
