@@ -42,7 +42,12 @@ return {
         quote = {
             repeat_linebreak = true,
         },
-
+        bullet = {
+            -- do not override appearance of numbered list
+            ordered_icons = function(ctx)
+                return ctx.value
+            end,
+        },
         -- needed for nice looking block quotes
         -- https://github.com/MeanderingProgrammer/render-markdown.nvim/wiki/BlockQuotes
         win_options = {
