@@ -5,6 +5,7 @@ return {
     opts = {
         keymap = {
             preset = "default",
+            ["<M-enter>"] = { "accept" },
         },
 
         appearance = {
