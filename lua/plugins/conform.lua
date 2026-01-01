@@ -1,6 +1,7 @@
 return {
     "stevearc/conform.nvim",
-    lazy = true,
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
     keys = {
         {
             "<leader>cf",
@@ -21,10 +22,11 @@ return {
                 typescript = { "prettier" },
                 vue = { "prettier" },
             },
-            -- format_on_save = {
-            --     async = true,
-            --     lsp_format = "fallback",
-            -- },
+            format_on_save = {
+                timeout_ms = 500,
+                -- async = true,
+                lsp_format = "fallback",
+            },
         })
     end,
 }
