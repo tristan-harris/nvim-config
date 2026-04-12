@@ -21,7 +21,7 @@ return {
                 textDocument = {
                     completion = {
                         completionItem = {
-                            snippetSupport = false, -- disable snippets from LS
+                            snippetSupport = true, -- disable snippets from LS
                         },
                     },
                 },

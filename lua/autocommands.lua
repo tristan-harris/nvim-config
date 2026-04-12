@@ -62,21 +62,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     desc = "Auto create directory(s) when saving a file",
 })
 
-vim.api.nvim_create_autocmd("BufReadPost", {
-    group = group,
-    pattern = "Calendar.md",
-    callback = function()
-        local date_string = tostring(os.date("%d/%m/%Y %a"))
-        vim.api.nvim_set_hl(0, "CurrentDateHighlightGroup", { link = "@markup.heading" })
-        vim.fn.matchadd("CurrentDateHighlightGroup", date_string)
-        vim.keymap.set("n", "<leader>mc", function()
-            vim.fn.search(date_string, "w") -- capital 'W' to wrap search
-            vim.cmd("normal! zz")
-        end, { desc = "Goto [c]urrent day" })
-    end,
-    desc = "Highlight current day in calendar",
-})
-
 -- see also 'fold' section in options
 -- https://redlib.catsarch.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -88,6 +73,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.wo[win][0].foldexpr = "v:lua.vim.lsp.foldexpr()"
         end
     end,
+})
+
+-- CALENDAR --------------------------------------------------------------------
+
+vim.api.nvim_create_autocmd("BufReadPost", {
+    group = group,
+    pattern = "Calendar.md",
+    callback = function()
+        local date_string = tostring(os.date("%d/%m/%Y %a"))
+        print(date_string)
+        vim.api.nvim_set_hl(0, "CurrentDateHighlightGroup", { link = "@markup.heading" })
+        vim.fn.matchadd("CurrentDateHighlightGroup", date_string)
+        vim.keymap.set("n", "<leader>mc", function()
+            vim.fn.search(date_string, "w") -- capital 'W' to wrap search
+            vim.cmd("normal! zz")
+        end, { desc = "Goto [c]urrent day" })
+    end,
+    desc = "Highlight current day in calendar",
 })
 
 -- GDSCRIPT --------------------------------------------------------------------
@@ -125,7 +128,7 @@ vim.api.nvim_create_autocmd("FileType", {
         -- Buffer-local keymap only for markdown files
         vim.keymap.set("n", "<C-Space>", toggleCheckbox, { buffer = true, desc = "Toggle checkbox" })
     end,
-    desc = "Toggle checkbox"
+    desc = "Toggle checkbox",
 })
 
 --------------------------------------------------------------------------------

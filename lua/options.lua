@@ -50,4 +50,4 @@ vim.cmd([[aunmenu PopUp.-2-]])
 
 -- prevents treesitter syntax highlighting flickering issue (temporary fix)
 -- https://redlib.catsarch.com/r/neovim/comments/1jtz99h/treesitter_highlight_flickering/
-vim.g._ts_force_sync_parsing = true
+-- vim.g._ts_force_sync_parsing = true
