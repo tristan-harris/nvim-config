@@ -1,1 +1,1 @@
--- vim.cmd([[TSDisable indent]]) -- TS indent is bad for this language
+vim.opt.expandtab = true -- override built-in ftplugin for gdscript

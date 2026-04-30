@@ -9,8 +9,10 @@
 local lsps = {
     { "bashls" },
     { "clangd" },
-    -- { "gdscript", { cmd = vim.lsp.rpc.connect("172.29.208.1", 6005) } },
-    { "gdscript" },
+
+    -- WSL configuration
+    { "gdscript", { cmd = { "godot-wsl-lsp", "--host", "172.29.208.1", "--experimentalFastPathConversion" } } },
+
     {
         "lua_ls",
         {
