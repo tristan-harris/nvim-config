@@ -13,7 +13,7 @@ local subHeader = "No more mouse, no more mice, no more traps."
 logo = logo .. "\n" .. subHeader .. "\n\n"
 
 -- apply upper margin proportional to window height
-local paddingAmount = math.ceil(vim.api.nvim_win_get_height(0) * 0.2)
+local paddingAmount = math.ceil(vim.api.nvim_win_get_height(0) * 0.1)
 logo = string.rep("\n", paddingAmount) .. logo
 
 return {

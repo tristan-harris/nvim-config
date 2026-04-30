@@ -1,20 +1,19 @@
 return {
     "mason-org/mason-lspconfig.nvim",
     dependencies = {
-        { "mason-org/mason.nvim", opts = {} },
+        { "mason-org/mason.nvim", config = true },
         "neovim/nvim-lspconfig",
+    },
+    opts = {
+        automatic_enable = { -- automatically enable all other LSP configs
+            exclude = {
+                "ruff", -- not needed as LS
+            },
+        },
     },
     config = function()
         local capabilities = require("blink.cmp").get_lsp_capabilities()
         capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-        require("mason-lspconfig").setup({
-            automatic_enable = { -- automatically enable all other LSP configs
-                exclude = {
-                    "ruff", -- not needed as LS
-                },
-            },
-        })
 
         vim.lsp.config("clangd", {
             capabilities = {
@@ -32,7 +31,7 @@ return {
             settings = {
                 Lua = {
                     diagnostics = {
-                        globals = { "vim", "mp" },
+                        globals = { "vim", "mp" }, -- for Neovim config
                     },
                 },
             },

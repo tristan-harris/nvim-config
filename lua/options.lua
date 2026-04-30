@@ -17,6 +17,7 @@ vim.opt.splitright = true
 vim.opt.undofile = true -- saves undos to file (at `undodir`)
 vim.opt.undolevels = 1000
 vim.opt.updatetime = 1000 -- after x ms nothing is typed, swap file written to disk
+vim.opt.winborder = "single" -- apply border around floating windows
 vim.opt.wrap = false
 
 -- fold
@@ -43,7 +44,7 @@ vim.opt.tabstop = 4 -- number of visual spaces per TAB
 
 -- vim.opt.iskeyword:remove('_')           -- treat '_' as not being part of a word
 
--- remove 'How-to disable mouse' and emtpy lines in mouse popup
+-- remove 'How-to disable mouse' and empty lines in mouse popup
 vim.cmd([[aunmenu PopUp.How-to\ disable\ mouse]])
 vim.cmd([[aunmenu PopUp.-1-]])
 vim.cmd([[aunmenu PopUp.-2-]])

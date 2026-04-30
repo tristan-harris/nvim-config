@@ -34,7 +34,8 @@ require("lazy").setup({
 
     -- CORE
     require("plugins.blink-cmp"),
-    require("plugins.mason-lspconfig"),
+    require("plugins.mason"),
+    require("plugins.nvim-lspconfig"),
     require("plugins.treesitter"),
 
     -- NAVIGATION
@@ -57,12 +58,15 @@ require("lazy").setup({
     -- UTILITY
     require("plugins.autopairs"),
     require("plugins.conform"),
-    require("plugins.grug-far"),
     require("plugins.nvim-lint"),
     require("plugins.persistence"),
 
-    -- MARKDOWN
-    require("plugins.obsidian-nvim"),
+    -- { "mfussenegger/nvim-dap" },
+    -- { "rcarriga/nvim-dap-ui" },
+
+    -- LANGUAGE-SPECIFIC
+    -- require("plugins.godotdev"),
+    -- require("plugins.obsidian-nvim"),
     require("plugins.render-markdown"),
 
     -- IMPORTANT
@@ -95,5 +99,6 @@ require("autocommands")
 require("diagnostics")
 require("filetype")
 require("keymaps")
-require("miscellaneous")
 require("options")
+require("miscellaneous")
+require("lsp")

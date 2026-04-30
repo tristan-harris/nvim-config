@@ -95,14 +95,14 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 -- GDSCRIPT --------------------------------------------------------------------
 
-vim.api.nvim_create_autocmd("FileType", {
-    group = group,
-    pattern = "gdscript",
-    callback = function()
-        vim.b.did_ftplugin = 1
-    end,
-    desc = "Prevent built-in gdscript ftplugin from loading",
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     group = group,
+--     pattern = "gdscript",
+--     callback = function()
+--         vim.b.did_ftplugin = 1
+--     end,
+--     desc = "Prevent built-in gdscript ftplugin from loading",
+-- })
 
 -- MARKDOWN --------------------------------------------------------------------
 
