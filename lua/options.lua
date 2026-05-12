@@ -22,13 +22,22 @@ vim.opt.wrap = false
 
 -- fold
 -- https://redlib.catsarch.com/r/neovim/comments/1jmqd7t/sorry_ufo_these_7_lines_replaced_you/
-vim.opt.fillchars:append({ fold = " " })
-vim.opt.foldcolumn = "0"
+-- vim.opt.fillchars:append({ fold = " " })
+-- vim.opt.foldcolumn = "0"
+-- vim.opt.foldenable = true
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- prefer LSP folding if client supports it
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldmethod = "expr" -- default to treesitter folding
+-- vim.opt.foldtext = ""
+
+-- fold
+-- https://redlib.catsarch.com/r/neovim/comments/1t3aftx/any_good_pluginssetups_for_folds/
 vim.opt.foldenable = true
+vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- prefer LSP folding if client supports it
-vim.opt.foldlevel = 99
-vim.opt.foldmethod = "expr" -- default to treesitter folding
 vim.opt.foldtext = ""
+vim.opt.foldlevelstart = 99
+vim.opt.fillchars = { fold = " ", foldopen = "▾", foldclose = "▸", foldinner = " ", foldsep = " " }
 
 -- case
 vim.opt.ignorecase = true -- ignore case when searching
