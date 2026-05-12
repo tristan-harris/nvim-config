@@ -1,4 +1,5 @@
 local extension = {
+    eccs = "eccs",
     h = "c",
     log = "log",
 }
