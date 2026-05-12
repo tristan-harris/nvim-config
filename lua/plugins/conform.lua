@@ -15,7 +15,7 @@ return {
         require("conform").setup({
             formatters_by_ft = {
                 cs = { "csharpier" },
-                gdscript = { "gdscript-formatter" },
+                gdscript = { "gdformat" },
                 html = { "prettier" },
                 javascript = { "prettier" },
                 json = { "prettier" },
@@ -25,11 +25,11 @@ return {
                 vue = { "prettier" },
             },
 
-            formatters = {
-                ["gdscript-formatter"] = {
-                    append_args = { "--use-spaces" },
-                },
-            },
+            -- formatters = {
+            --     ["gdscript-formatter"] = {
+            --         append_args = { "--use-spaces" },
+            --     },
+            -- },
 
             format_on_save = {
                 timeout_ms = 500,

@@ -1,6 +1,6 @@
 -- https://xnacly.me/posts/2025/neovim-lsp-changes/
 
--- the configurations below are applied along with the built-in ones
+-- the configurations below are applied alongside the built-in ones
 -- provided by stock Neovim, as well as the ones provided by
 -- nvim-lspconfig
 
@@ -11,7 +11,9 @@ local lsps = {
     { "clangd" },
 
     -- WSL configuration
-    { "gdscript", { cmd = { "godot-wsl-lsp", "--host", "172.29.208.1", "--experimentalFastPathConversion" } } },
+    -- { "gdscript", { cmd = { "godot-wsl-lsp", "--host", "172.29.208.1", "--experimentalFastPathConversion" } } },
+    { "gdscript" },
+    { "basedpyright" },
 
     {
         "lua_ls",
