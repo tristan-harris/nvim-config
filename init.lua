@@ -44,6 +44,7 @@ require("lazy").setup({
 
     -- UI
     require("plugins.dashboard"),
+    require("plugins.fidget"),
     require("plugins.highlight-colors"),
     require("plugins.lualine"),
     require("plugins.neoscroll"),
