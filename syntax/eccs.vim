@@ -15,7 +15,8 @@ syntax match eccsComment /#.*/
 " --------------------------------------------------
 " Double-quoted strings with escaped quotes support
 
-syntax region eccsString start=/"/ skip=/\\"/ end=/"/ contains=NONE
+syntax match eccsEscape /\\./ contained
+syntax region eccsString start=/"/ skip=/\\"/ end=/"/ contains=eccsEscape
 
 " --------------------------------------------------
 " Keywords
@@ -34,7 +35,8 @@ syntax keyword eccsStatement if elif else
 " --------------------------------------------------
 
 " P = Player
-syntax keyword eccsConstant P up down left right
+" O = Other (NPC Player is interacting with)
+syntax keyword eccsConstant O P down left right up
 
 " --------------------------------------------------
 " Numeric Literals
@@ -55,6 +57,7 @@ syntax match eccsSeparator /;/
 
 highlight default link eccsComment   Comment
 highlight default link eccsString    String
+highlight default link eccsEscape    Special
 highlight default link eccsKeyword   Keyword
 highlight default link eccsStatement Statement
 highlight default link eccsConstant  Constant
