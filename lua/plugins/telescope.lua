@@ -21,7 +21,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
         require("telescope").setup({
             defaults = {
                 borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-                preview = { msg_bg_fillchar = " " }, -- removes harsh-looking slashes from binary file preview
                 mappings = {
                     i = {
                         ["<c-enter>"] = "to_fuzzy_refine",
@@ -31,6 +30,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
                         ["<c-t>"] = open_with_trouble,
                     },
                 },
+                preview = { msg_bg_fillchar = " " }, -- removes harsh-looking slashes from binary file preview
             },
             -- pickers = { },
             extensions = {
@@ -63,6 +63,17 @@ return { -- Fuzzy Finder (files, lsp, etc)
         vim.keymap.set("n", "<leader>fT", "<cmd>TodoTelescope<cr>", { desc = "Find [T]odos" })
         vim.keymap.set("n", "<leader>fu", "<cmd>Telescope undo<cr>", { desc = "Find [u]ndo" })
         vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find [w]ord (cursor)" })
+
+        -- equivalent of .gitignore for Telescope
+        local project_ignore = vim.fn.getcwd() .. "/.telescopeignore"
+        if vim.fn.filereadable(project_ignore) == 1 then
+            local patterns = vim.fn.readfile(project_ignore)
+            require("telescope").setup({
+                defaults = {
+                    file_ignore_patterns = patterns,
+                },
+            })
+        end
 
         -- Slightly advanced example of overriding default behavior and theme
         vim.keymap.set("n", "<leader>/", function()
